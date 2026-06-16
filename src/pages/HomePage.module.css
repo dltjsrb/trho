@@ -1,198 +1,259 @@
+/* ──────────────────────────────────────────────────────────────
+   Home — 시간프레임 선택 메뉴 (1주일 / 1달 / 1년)
+   ────────────────────────────────────────────────────────────── */
+
 .intro {
+  text-align: center;
+  padding: 56px 0 24px;
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 24px;
-  align-items: stretch;
-  padding: 56px 40px;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--c-border-strong);
-  background:
-    radial-gradient(
-      ellipse 60% 60% at 100% 0%,
-      rgba(212, 169, 83, 0.2),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 60% 60% at 0% 100%,
-      rgba(192, 57, 43, 0.18),
-      transparent 60%
-    ),
-    linear-gradient(135deg, rgba(38, 22, 64, 0.85), rgba(10, 7, 18, 0.85));
-  overflow: hidden;
-  margin-bottom: 40px;
-  box-shadow: var(--shadow-card);
 }
 
 .intro::before {
   content: "";
   position: absolute;
-  right: -120px;
-  top: -120px;
-  width: 360px;
-  height: 360px;
+  left: 50%;
+  top: -40px;
+  transform: translateX(-50%);
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
   background: radial-gradient(
-    circle at 30% 30%,
-    rgba(212, 169, 83, 0.18),
-    transparent 70%
+    circle at 50% 35%,
+    rgba(240, 201, 124, 0.18),
+    transparent 65%
   );
   pointer-events: none;
-}
-
-.introInner {
-  position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 
 .eyebrow {
-  margin: 0 0 18px;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 16px;
   font-family: var(--font-display);
-  letter-spacing: 0.6em;
-  font-size: 13px;
+  letter-spacing: 0.5em;
+  font-size: 12px;
   color: var(--c-vermilion-soft);
 }
 
 .title {
+  position: relative;
+  z-index: 1;
   margin: 0;
-  font-size: clamp(34px, 5vw, 56px);
-  line-height: 1.15;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.1;
   letter-spacing: 0.02em;
 }
 
 .title span {
-  background: linear-gradient(135deg, #f0c97c, #e26a5b 80%);
+  background: linear-gradient(135deg, #f0c97c, #d8624f 80%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .lead {
-  margin: 20px 0 32px;
+  position: relative;
+  z-index: 1;
+  margin: 22px auto 0;
+  max-width: 580px;
   color: var(--c-text-soft);
-  font-size: 16px;
-  line-height: 1.7;
-  max-width: 540px;
+  font-size: 15px;
+  line-height: 1.8;
 }
 
-.ctaRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 22px;
-  border-radius: 999px;
-  border: 1px solid var(--c-border-strong);
-  font-family: var(--font-display);
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  color: var(--c-text);
-  background: rgba(10, 7, 18, 0.4);
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    color 0.2s ease;
-}
-.cta:hover {
-  transform: translateY(-2px);
-  color: var(--c-gold-soft);
-  background: rgba(212, 169, 83, 0.1);
-}
-
-.ctaPrimary {
-  background: linear-gradient(135deg, #f0c97c, #c0392b);
-  color: #1a0f2e;
-  border-color: transparent;
-  box-shadow: var(--shadow-glow-gold);
-}
-.ctaPrimary:hover {
-  color: #0a0712;
-  background: linear-gradient(135deg, #f0c97c, #e26a5b);
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+/* ── 시간프레임 카드 그리드 ──────────────────────────────── */
+.timeframeGrid {
   list-style: none;
   margin: 36px 0 0;
-  padding: 18px;
-  border: 1px dashed var(--c-border);
-  border-radius: var(--radius-md);
-  background: rgba(10, 7, 18, 0.35);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 
-.stats li {
+.tfCard {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 4px;
+  gap: 14px;
+  height: 100%;
+  padding: 28px 26px 26px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--c-border);
+  background: linear-gradient(
+      155deg,
+      rgba(70, 28, 32, 0.7),
+      rgba(28, 12, 14, 0.7)
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(212, 169, 83, 0.18),
+      transparent 60%
+    );
+  color: inherit;
+  text-decoration: none;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
-.stats strong {
+
+.tfCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 100% 0%,
+    rgba(240, 201, 124, 0.25),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.tfCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--c-border-strong);
+  box-shadow:
+    var(--shadow-card),
+    var(--shadow-glow-gold);
+}
+.tfCard:hover::before {
+  opacity: 1;
+}
+
+.tfNum {
   font-family: var(--font-display);
-  font-size: 24px;
-  color: var(--c-gold-soft);
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: rgba(212, 169, 83, 0.65);
 }
-.stats span {
+
+.tfMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.tfLabel {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  color: var(--c-gold-soft);
+  line-height: 1.1;
+}
+
+.tfEnglish {
+  font-style: normal;
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.42em;
   color: var(--c-text-dim);
   text-transform: uppercase;
 }
 
-.scroll {
+.tfDesc {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--c-text-soft);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 1;
 }
 
-.scrollMark {
-  width: 180px;
-  height: 240px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 96px;
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  color: #1a0f2e;
-  background:
-    radial-gradient(
-      circle at 30% 30%,
-      rgba(255, 240, 200, 0.95),
-      rgba(212, 169, 83, 0.7) 40%,
-      rgba(120, 70, 30, 0.7) 100%
-    );
-  border-radius: 24px;
-  border: 2px solid rgba(212, 169, 83, 0.55);
-  transform: rotate(-3deg);
-  box-shadow:
-    0 24px 60px -16px rgba(0, 0, 0, 0.6),
-    inset 0 0 60px rgba(192, 57, 43, 0.25);
+.tfPositions {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px dashed var(--c-border);
+  border-bottom: 1px dashed var(--c-border);
+  position: relative;
+  z-index: 1;
 }
 
-@media (max-width: 840px) {
-  .intro {
+.tfPositions li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.tfPosLabel {
+  color: var(--c-text);
+  letter-spacing: 0.04em;
+}
+
+.tfPosEng {
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  letter-spacing: 0.32em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.tfArrow {
+  margin-top: auto;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--c-vermilion-soft);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.tfCard:hover .tfArrow {
+  color: var(--c-gold-soft);
+  transform: translateX(4px);
+}
+
+/* ── 보조 링크 ──────────────────────────────────────────── */
+.subLinks {
+  margin: 36px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  letter-spacing: 0.18em;
+  color: var(--c-text-dim);
+  text-transform: uppercase;
+}
+
+.subLink {
+  color: var(--c-text-soft);
+  text-decoration: none;
+  padding: 6px 4px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.subLink:hover {
+  color: var(--c-gold-soft);
+  border-bottom-color: var(--c-border-strong);
+}
+
+.subDivider {
+  color: var(--c-text-muted);
+}
+
+@media (max-width: 920px) {
+  .timeframeGrid {
     grid-template-columns: 1fr;
-    padding: 36px 24px;
   }
-  .scroll {
-    display: none;
-  }
-  .intro::before {
-    width: 240px;
-    height: 240px;
-    right: -80px;
-    top: -80px;
+  .intro {
+    padding: 36px 0 8px;
   }
 }

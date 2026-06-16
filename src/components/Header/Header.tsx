@@ -2,7 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const navItems = [
-  { to: "/", label: "홈" },
+  { to: "/", label: "3장 뽑기" },
   { to: "/monthly", label: "이달의 부적" },
   { to: "/cards", label: "카드 도감" },
 ];

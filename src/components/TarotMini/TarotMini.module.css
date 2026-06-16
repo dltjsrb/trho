@@ -48,7 +48,7 @@
   position: absolute;
   top: 10px;
   font-family: var(--font-display);
-  background: rgba(10, 7, 18, 0.78);
+  background: rgba(20, 8, 10, 0.78);
   color: var(--c-gold-soft);
   border: 1px solid var(--c-border-strong);
   padding: 2px 6px;
